@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jliu771.github.io/resources.html</loc>
+    <lastmod>2026-10-05T02:33:03.864Z</lastmod>
+  </url>
+  <url>
     <loc>https://jliu771.github.io/posts/sensitivity-is-not-ppv/index.html</loc>
     <lastmod>2026-10-05T01:42:53.421Z</lastmod>
   </url>
   <url>
     <loc>https://jliu771.github.io/index.html</loc>
-    <lastmod>2026-10-05T02:26:45.831Z</lastmod>
+    <lastmod>2026-10-05T02:33:03.243Z</lastmod>
   </url>
   <url>
     <loc>https://jliu771.github.io/about.html</loc>
     <lastmod>2026-10-05T00:40:02.140Z</lastmod>
   </url>
   <url>
+    <loc>https://jliu771.github.io/contact.html</loc>
+    <lastmod>2026-10-05T02:33:04.195Z</lastmod>
+  </url>
+  <url>
     <loc>https://jliu771.github.io/posts/how-strong-is-your-prior/index.html</loc>
     <lastmod>2026-10-05T01:42:53.961Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jliu771.github.io/posts.html</loc>
+    <lastmod>2026-10-05T02:33:03.555Z</lastmod>
   </url>
 </urlset>

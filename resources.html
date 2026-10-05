@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Actually, Tell Me the Odds</title>
+<title>Resources – Actually, Tell Me the Odds</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -104,11 +104,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./resources.html"> 
+    <a class="nav-link active" href="./resources.html" aria-current="page"> 
 <span class="menu-text">Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
@@ -143,8 +143,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-this-name" id="toc-why-this-name" class="nav-link active" data-scroll-target="#why-this-name">Why this name?</a></li>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About me</a></li>
+  <li><a href="#start-here" id="toc-start-here" class="nav-link active" data-scroll-target="#start-here">Start here</a></li>
+  <li><a href="#for-clinicians" id="toc-for-clinicians" class="nav-link" data-scroll-target="#for-clinicians">For clinicians</a></li>
+  <li><a href="#bayesian-statistics" id="toc-bayesian-statistics" class="nav-link" data-scroll-target="#bayesian-statistics">Bayesian statistics</a></li>
+  <li><a href="#learn-by-doing" id="toc-learn-by-doing" class="nav-link" data-scroll-target="#learn-by-doing">Learn by doing</a></li>
+  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   </ul>
 </nav>
     </div>
@@ -153,7 +157,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Resources</h1>
+<p class="subtitle lead">Books, courses and tools behind the posts, roughly in the order I’d suggest them</p>
 </div>
 
 
@@ -170,26 +175,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Actually, Tell Me the Odds</strong> is a blog about statistics and computing for people who would really rather…not. But hopefully it will convince people that maybe we should learn more about how chances, statistics, probability affect our lives.</p>
-<p>It’s written mainly for helping <strong>healthcare providers</strong>: doctors, nurses, pharmacists and everyone else who orders tests, reads studies and explains risk to patients, often with minimal formal training in statistics. Data scientists, statisticians and curious laypeople are just as welcome, and I will absolutely need your help.</p>
-<p>Each post takes one idea and works through it with real or realistic examples:</p>
+<section id="start-here" class="level2">
+<h2 class="anchored" data-anchor-id="start-here">Start here</h2>
 <ul>
-<li><strong>Clinics:</strong> diagnostic tests, risk, and the phrases we use without thinking (“90% sensitive, so a 10% chance…”).</li>
-<li><strong>Cards:</strong> pull rates, pack odds and prices from trading-card collecting, a surprisingly good playground for probability.</li>
-<li><strong>Code:</strong> everything is computed in Python, and the code is there for anyone who wants it. Click <strong>Show the code</strong> to see it, or ignore it entirely; the posts make sense without it.</li>
+<li><strong>David Spiegelhalter, <em>The Art of Statistics</em> (2019).</strong> The best plain-language introduction to thinking with data that I know of. No code, no prerequisites.</li>
+<li><strong>Gerd Gigerenzer, <em>Calculated Risks</em> (2002; <em>Reckoning with Risk</em> in the UK).</strong> Why doctors, patients and courts misread probabilities, and how natural frequencies fix it. The inspiration for the first post here.</li>
+<li><strong>Gigerenzer et al., <a href="https://journals.sagepub.com/doi/10.1111/j.1539-6053.2008.00033.x">“Helping doctors and patients make sense of health statistics”</a></strong> (<em>Psychological Science in the Public Interest</em>, 2007). A long, readable review aimed squarely at clinicians.</li>
 </ul>
-<p>The thread running through all of it is <strong>Bayesian thinking</strong>: start with what you knew before, then update it honestly with new evidence.</p>
-<section id="why-this-name" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-name">Why this name?</h2>
-<p>In <em>The Empire Strikes Back</em>, C-3PO starts reciting the odds of surviving an asteroid field, and Han Solo cuts him off: <em>“Never tell me the odds!”</em></p>
-<p>This blog takes the other side. In medicine, as in card collecting, knowing the odds, and knowing how to read them, is the whole game. So: actually, tell me the odds.</p>
 </section>
-<section id="about-me" class="level2">
-<h2 class="anchored" data-anchor-id="about-me">About me</h2>
-<p>I’m Jonathan, and I work with data. You can find the code behind this blog on <a href="https://github.com/jliu771">GitHub</a>.</p>
-<p>At the time of creation of this blog, I consider myself a relatively amateur programmer and mediocre statistician.</p>
-<p>The truth is, it’s all relative. I was a medical student, and then a pediatrics resident at USC/LA General, as well as a PhD grad from Caltech. At this level, I still don’t feel like an expert in anything- I hope to surround myself with people who know more than me as long as I can, as those people have graciously helped me become whatever it is I am today.</p>
-<p>The idea then is to pay it forward- which is a task this blog hopes to accomplish. We’re going to discuss a variety of topics and datasets - Pokemon Cards (my very expensive hobby of buying pricy cardboard), medicine, pediatrics, data science, Bayesian statistics, data exploration and visualization, and much more. Hopefully you learn something, even if it’s a new way of saying or explaining something old.</p>
+<section id="for-clinicians" class="level2">
+<h2 class="anchored" data-anchor-id="for-clinicians">For clinicians</h2>
+<ul>
+<li><strong>The BMJ <em>Statistics Notes</em> series (Altman, Bland and colleagues).</strong> Short, one-page explanations of single ideas. The diagnostic-test notes (sensitivity and specificity, predictive values, likelihood ratios) pair well with the first post.</li>
+</ul>
+</section>
+<section id="bayesian-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="bayesian-statistics">Bayesian statistics</h2>
+<ul>
+<li><strong>Richard McElreath, <em>Statistical Rethinking</em> (2nd ed., 2020).</strong> The friendliest serious introduction to Bayesian modelling, with free lecture videos and materials on <a href="https://github.com/rmcelreath/stat_rethinking_2026">GitHub</a>. Python versions of the book’s code: <a href="https://github.com/pymc-devs/pymc-resources">PyMC resources</a>.</li>
+<li><strong>David Robinson, <em>Introduction to Empirical Bayes: Examples from Baseball Statistics</em> (2017).</strong> Short, practical and built on batting averages. It grew out of his <a href="http://varianceexplained.org/">Variance Explained</a> blog series; the book’s source is on <a href="https://github.com/dgrtwo/empirical-bayes-book">GitHub</a>.</li>
+<li><strong>Gelman, Hill and Vehtari, <em>Regression and Other Stories</em> (2020).</strong> Regression as modelling rather than recipe. The authors offer a <a href="https://users.aalto.fi/~ave/ROS.pdf">free PDF</a>.</li>
+<li><strong>Gelman et al., <em>Bayesian Data Analysis</em> (3rd ed., 2013).</strong> The standard reference, and a free PDF is available from the <a href="http://www.stat.columbia.edu/~gelman/book/">book’s home page</a>. Home of the rat tumour example.</li>
+<li><strong>Martin, Kumar and Lao, <em>Bayesian Modeling and Computation in Python</em> (2021).</strong> Hands-on PyMC and ArviZ.</li>
+</ul>
+</section>
+<section id="learn-by-doing" class="level2">
+<h2 class="anchored" data-anchor-id="learn-by-doing">Learn by doing</h2>
+<ul>
+<li><strong><a href="https://github.com/jliu771/BayesStatsCardsandComputers">Empirical Bayes in Python</a>:</strong> my own workbook notebooks following Robinson’s book chapter by chapter, with prompts to fill in yourself.</li>
+</ul>
+</section>
+<section id="tools" class="level2">
+<h2 class="anchored" data-anchor-id="tools">Tools</h2>
+<ul>
+<li><a href="https://www.python.org/">Python</a> with NumPy, SciPy, pandas and matplotlib for everything on this blog.</li>
+<li><a href="https://www.pymc.io/">PyMC</a> and <a href="https://python.arviz.org/">ArviZ</a> for full Bayesian models.</li>
+<li><a href="https://quarto.org/">Quarto</a>, which turns the Jupyter notebooks into this site.</li>
+</ul>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ul>
+<li><a href="https://sabr.org/lahman-database/">Lahman Baseball Database</a> (CC BY-SA 3.0), used in the empirical Bayes posts.</li>
+</ul>
 
 
 </section>

@@ -1,5 +1,54 @@
 [
   {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "David Spiegelhalter, The Art of Statistics (2019). The best plain-language introduction to thinking with data that I know of. No code, no prerequisites.\nGerd Gigerenzer, Calculated Risks (2002; Reckoning with Risk in the UK). Why doctors, patients and courts misread probabilities, and how natural frequencies fix it. The inspiration for the first post here.\nGigerenzer et al., “Helping doctors and patients make sense of health statistics” (Psychological Science in the Public Interest, 2007). A long, readable review aimed squarely at clinicians."
+  },
+  {
+    "objectID": "resources.html#start-here",
+    "href": "resources.html#start-here",
+    "title": "Resources",
+    "section": "",
+    "text": "David Spiegelhalter, The Art of Statistics (2019). The best plain-language introduction to thinking with data that I know of. No code, no prerequisites.\nGerd Gigerenzer, Calculated Risks (2002; Reckoning with Risk in the UK). Why doctors, patients and courts misread probabilities, and how natural frequencies fix it. The inspiration for the first post here.\nGigerenzer et al., “Helping doctors and patients make sense of health statistics” (Psychological Science in the Public Interest, 2007). A long, readable review aimed squarely at clinicians."
+  },
+  {
+    "objectID": "resources.html#for-clinicians",
+    "href": "resources.html#for-clinicians",
+    "title": "Resources",
+    "section": "For clinicians",
+    "text": "For clinicians\n\nThe BMJ Statistics Notes series (Altman, Bland and colleagues). Short, one-page explanations of single ideas. The diagnostic-test notes (sensitivity and specificity, predictive values, likelihood ratios) pair well with the first post."
+  },
+  {
+    "objectID": "resources.html#bayesian-statistics",
+    "href": "resources.html#bayesian-statistics",
+    "title": "Resources",
+    "section": "Bayesian statistics",
+    "text": "Bayesian statistics\n\nRichard McElreath, Statistical Rethinking (2nd ed., 2020). The friendliest serious introduction to Bayesian modelling, with free lecture videos and materials on GitHub. Python versions of the book’s code: PyMC resources.\nDavid Robinson, Introduction to Empirical Bayes: Examples from Baseball Statistics (2017). Short, practical and built on batting averages. It grew out of his Variance Explained blog series; the book’s source is on GitHub.\nGelman, Hill and Vehtari, Regression and Other Stories (2020). Regression as modelling rather than recipe. The authors offer a free PDF.\nGelman et al., Bayesian Data Analysis (3rd ed., 2013). The standard reference, and a free PDF is available from the book’s home page. Home of the rat tumour example.\nMartin, Kumar and Lao, Bayesian Modeling and Computation in Python (2021). Hands-on PyMC and ArviZ."
+  },
+  {
+    "objectID": "resources.html#learn-by-doing",
+    "href": "resources.html#learn-by-doing",
+    "title": "Resources",
+    "section": "Learn by doing",
+    "text": "Learn by doing\n\nEmpirical Bayes in Python: my own workbook notebooks following Robinson’s book chapter by chapter, with prompts to fill in yourself."
+  },
+  {
+    "objectID": "resources.html#tools",
+    "href": "resources.html#tools",
+    "title": "Resources",
+    "section": "Tools",
+    "text": "Tools\n\nPython with NumPy, SciPy, pandas and matplotlib for everything on this blog.\nPyMC and ArviZ for full Bayesian models.\nQuarto, which turns the Jupyter notebooks into this site."
+  },
+  {
+    "objectID": "resources.html#data",
+    "href": "resources.html#data",
+    "title": "Resources",
+    "section": "Data",
+    "text": "Data\n\nLahman Baseball Database (CC BY-SA 3.0), used in the empirical Bayes posts."
+  },
+  {
     "objectID": "posts/sensitivity-is-not-ppv/index.html",
     "href": "posts/sensitivity-is-not-ppv/index.html",
     "title": "“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it”",
@@ -81,7 +130,7 @@
     "href": "index.html",
     "title": "Actually, Tell Me the Odds",
     "section": "",
-    "text": "How strong is your prior?\n\n\nWhy the strength of a belief can matter more than its center, with baseball batting averages and rat tumour experiments\n\n\n\nBayes\n\nempirical Bayes\n\npriors\n\nsimulation\n\nbaseball\n\n\n\nA prior’s strength decides how far evidence can move you. With thousands of observations the data pin it down; with a few dozen they can’t, and getting it wrong quietly breaks your credible intervals.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\n\n\n\n\n\n\n\n“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it”\n\n\nSensitivity, specificity, PPV and NPV for people who order tests, explained with 1,000 patients and a little Python\n\n\n\ndiagnostic tests\n\nBayes\n\nstatistics for clinicians\n\nlikelihood ratios\n\nPPV\n\nNPV\n\nomission rate\n\n\n\nWhy sensitivity doesn’t tell you enough about whether a patient has a disease, what PPV and NPV really mean, and how to think about any test result in counts.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\nNo matching items"
+    "text": "See all posts →\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow strong is your prior?\n\n\nWhy the strength of a belief can matter more than its center, with baseball batting averages and rat tumour experiments\n\n\n\nBayes\n\nempirical Bayes\n\npriors\n\nsimulation\n\nbaseball\n\n\n\nA prior’s strength decides how far evidence can move you. With thousands of observations the data pin it down; with a few dozen they can’t, and getting it wrong quietly breaks your credible intervals.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\n\n\n\n\n\n\n\n“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it”\n\n\nSensitivity, specificity, PPV and NPV for people who order tests, explained with 1,000 patients and a little Python\n\n\n\ndiagnostic tests\n\nBayes\n\nstatistics for clinicians\n\nlikelihood ratios\n\nPPV\n\nNPV\n\nomission rate\n\n\n\nWhy sensitivity doesn’t tell you enough about whether a patient has a disease, what PPV and NPV really mean, and how to think about any test result in counts.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -103,6 +152,13 @@
     "title": "About",
     "section": "About me",
     "text": "About me\nI’m Jonathan, and I work with data. You can find the code behind this blog on GitHub.\nAt the time of creation of this blog, I consider myself a relatively amateur programmer and mediocre statistician.\nThe truth is, it’s all relative. I was a medical student, and then a pediatrics resident at USC/LA General, as well as a PhD grad from Caltech. At this level, I still don’t feel like an expert in anything- I hope to surround myself with people who know more than me as long as I can, as those people have graciously helped me become whatever it is I am today.\nThe idea then is to pay it forward- which is a task this blog hopes to accomplish. We’re going to discuss a variety of topics and datasets - Pokemon Cards (my very expensive hobby of buying pricy cardboard), medicine, pediatrics, data science, Bayesian statistics, data exploration and visualization, and much more. Hopefully you learn something, even if it’s a new way of saying or explaining something old."
+  },
+  {
+    "objectID": "contact.html",
+    "href": "contact.html",
+    "title": "Contact",
+    "section": "",
+    "text": "I’d love to hear from you, especially if you’ve spotted a mistake, have a better way to explain something, or have a topic you’d like to see covered.\n\nFound an error or have a suggestion for a post? Open an issue on the blog’s GitHub repository. Corrections are always welcome, and I’ll credit you in the post.\nCode and notebooks: everything behind the posts is on GitHub.\nFollow along: subscribe to new posts with the RSS feed."
   },
   {
     "objectID": "posts/how-strong-is-your-prior/index.html",
@@ -159,5 +215,12 @@
     "title": "How strong is your prior?",
     "section": "References",
     "text": "References\n\nIntroduction to Empirical Bayes: Examples from Baseball Statistics, David Robinson (2017), Chapters 2–3 (the beta prior and its fit) and 13 (simulating replications, varying sample size).\nGelman, Carlin, Stern, Dunson, Vehtari & Rubin, Bayesian Data Analysis (3rd ed.), Section 5.3: the rat tumour experiments.\nTarone (1982), “The use of historical control information in testing for a trend in proportions”, Biometrics 38(1): the source of the rat tumour data.\nLahman Baseball Database (CC BY-SA 3.0): https://sabr.org/lahman-database/"
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Posts",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Author\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nHow strong is your prior?\n\n\nWhy the strength of a belief can matter more than its center, with baseball batting averages and rat tumour experiments\n\n\n\nBayes\n\nempirical Bayes\n\npriors\n\nsimulation\n\nbaseball\n\n\n\nA prior’s strength decides how far evidence can move you. With thousands of observations the data pin it down; with a few dozen they can’t, and getting it wrong quietly breaks your credible intervals.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\n\n\n\n\n\n\n\n“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it”\n\n\nSensitivity, specificity, PPV and NPV for people who order tests, explained with 1,000 patients and a little Python\n\n\n\ndiagnostic tests\n\nBayes\n\nstatistics for clinicians\n\nlikelihood ratios\n\nPPV\n\nNPV\n\nomission rate\n\n\n\nWhy sensitivity doesn’t tell you enough about whether a patient has a disease, what PPV and NPV really mean, and how to think about any test result in counts.\n\n\n\n\n\nOct 4, 2026\n\n\nJonathan\n\n\n\n\n\nNo matching items"
   }
 ]
