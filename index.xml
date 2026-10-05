@@ -75,7 +75,98 @@ font-style: inherit;">=</span> (<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>)</span></code></pre></div></div>
+font-style: inherit;">4</span>)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Chart colours that match the blog's dark (Superhero) theme</span></span>
+<span id="cb1-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># PANEL is a lighter navy at 55% opacity, so the page background shows through slightly</span></span>
+<span id="cb1-13">PANEL, LEGEND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2b4c6f8c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#254464"</span></span>
+<span id="cb1-14">INK, MUTED, GRID <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ebebeb"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#a9b3bd"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#3d5a78"</span></span>
+<span id="cb1-15">PALETTE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#df6919"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5bc0de"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5cb85c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffc107"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#d9534f"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4c9be8"</span>]</span>
+<span id="cb1-16">plt.rcParams.update({</span>
+<span id="cb1-17">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"figure.facecolor"</span>: PANEL, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.facecolor"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"savefig.facecolor"</span>: PANEL,</span>
+<span id="cb1-18">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.labelcolor"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.titlecolor"</span>: INK,</span>
+<span id="cb1-19">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xtick.color"</span>: MUTED, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ytick.color"</span>: MUTED, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.edgecolor"</span>: GRID, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grid.color"</span>: GRID,</span>
+<span id="cb1-20">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.facecolor"</span>: LEGEND, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.edgecolor"</span>: GRID, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.labelcolor"</span>: INK,</span>
+<span id="cb1-21">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.prop_cycle"</span>: plt.cycler(color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>PALETTE),</span>
+<span id="cb1-22">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.boxprops.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.whiskerprops.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.capprops.color"</span>: INK,</span>
+<span id="cb1-23">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.medianprops.color"</span>: PALETTE[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.flierprops.markeredgecolor"</span>: MUTED,</span>
+<span id="cb1-24">})</span></code></pre></div></div>
 </details>
 </div>
 <section id="spread-is-strength" class="level2">
@@ -352,9 +443,7 @@ font-style: inherit;">"</span>)</span>
 background-color: null;
 font-style: inherit;">0.5</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, lw<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, lw<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
@@ -947,9 +1036,7 @@ font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.92</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -964,13 +1051,13 @@ font-style: inherit;">160</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">490</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
+font-style: inherit;">=</span>PALETTE[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">"tab:orange"</span>, alpha<span class="op" style="color: #5E5E5E;
+font-style: inherit;">0</span>], alpha<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.15</span>, label<span class="op" style="color: #5E5E5E;
+font-style: inherit;">0.2</span>, label<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1125,9 +1212,7 @@ background-color: null;
 font-style: inherit;">"</span>)</span>
 <span id="cb12-14">plt.axvline(nu_hat, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1152,9 +1237,7 @@ font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.92</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1385,10 +1468,10 @@ font-style: inherit;"> s."</span>)</span>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   30 players: 100 replications done (2.0 s so far)
-  100 players: 100 replications done (2.8 s so far)
-  300 players: 100 replications done (4.0 s so far)
- 1000 players: 100 replications done (6.4 s so far)
-True nu = 367. Done in 6.4 s.</code></pre>
+  100 players: 100 replications done (2.9 s so far)
+  300 players: 100 replications done (4.1 s so far)
+ 1000 players: 100 replications done (6.5 s so far)
+True nu = 367. Done in 6.5 s.</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -1496,9 +1579,7 @@ font-weight: bold;
 font-style: inherit;">in</span> sizes])</span>
 <span id="cb15-4">ax1.axhline(nu_hat, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1593,9 +1674,7 @@ font-style: inherit;"> players"</span>)</span>
 background-color: null;
 font-style: inherit;">1</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1608,9 +1687,7 @@ font-style: inherit;">0.8</span>)</span>
 background-color: null;
 font-style: inherit;">0.95</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2124,9 +2201,7 @@ font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1.92</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2291,9 +2366,7 @@ font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>], color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2486,7 +2559,98 @@ font-style: inherit;">=</span> (<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">7</span>, <span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">4</span>)</span></code></pre></div></div>
+font-style: inherit;">4</span>)</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Chart colours that match the blog's dark (Superhero) theme</span></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># PANEL is a lighter navy at 55% opacity, so the page background shows through slightly</span></span>
+<span id="cb1-12">PANEL, LEGEND <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#2b4c6f8c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#254464"</span></span>
+<span id="cb1-13">INK, MUTED, GRID <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ebebeb"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#a9b3bd"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#3d5a78"</span></span>
+<span id="cb1-14">PALETTE <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#df6919"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5bc0de"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#5cb85c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#ffc107"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#d9534f"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#4c9be8"</span>]</span>
+<span id="cb1-15">plt.rcParams.update({</span>
+<span id="cb1-16">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"figure.facecolor"</span>: PANEL, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.facecolor"</span>: <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"savefig.facecolor"</span>: PANEL,</span>
+<span id="cb1-17">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"text.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.labelcolor"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.titlecolor"</span>: INK,</span>
+<span id="cb1-18">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"xtick.color"</span>: MUTED, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ytick.color"</span>: MUTED, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.edgecolor"</span>: GRID, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"grid.color"</span>: GRID,</span>
+<span id="cb1-19">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.facecolor"</span>: LEGEND, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.edgecolor"</span>: GRID, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"legend.labelcolor"</span>: INK,</span>
+<span id="cb1-20">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"axes.prop_cycle"</span>: plt.cycler(color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>PALETTE),</span>
+<span id="cb1-21">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.boxprops.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.whiskerprops.color"</span>: INK, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.capprops.color"</span>: INK,</span>
+<span id="cb1-22">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.medianprops.color"</span>: PALETTE[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>], <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"boxplot.flierprops.markeredgecolor"</span>: MUTED,</span>
+<span id="cb1-23">})</span></code></pre></div></div>
 </details>
 </div>
 <section id="two-questions-that-sound-alike" class="level2">
@@ -2849,9 +3013,7 @@ background-color: null;
 font-style: inherit;">"Chance of disease after a NEGATIVE test (1 − NPV)"</span>)</span>
 <span id="cb5-7">ax.plot(pretest, pretest, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -2881,9 +3043,7 @@ background-color: null;
 font-style: inherit;">"high suspicion"</span>)]:</span>
 <span id="cb5-9">    ax.axvline(p, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey"</span>, lw<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>MUTED, lw<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
 background-color: null;
@@ -3047,33 +3207,33 @@ font-style: inherit;">"index"</span>)</span></code></pre></div></div>
 <style type="text/css">
 </style>
 
-<table id="T_38b11" class="caption-top table table-sm table-striped small">
+<table id="T_33ec2" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_38b11_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Setting</th>
-<th id="T_38b11_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Before testing</th>
-<th id="T_38b11_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After positive (PPV)</th>
-<th id="T_38b11_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">After negative (1 − NPV)</th>
+<th id="T_33ec2_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Setting</th>
+<th id="T_33ec2_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Before testing</th>
+<th id="T_33ec2_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After positive (PPV)</th>
+<th id="T_33ec2_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">After negative (1 − NPV)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_38b11_row0_col0" class="data row0 col0">Screening the general population</td>
-<td id="T_38b11_row0_col1" class="data row0 col1">1.0%</td>
-<td id="T_38b11_row0_col2" class="data row0 col2">15.4%</td>
-<td id="T_38b11_row0_col3" class="data row0 col3">0.1%</td>
+<td id="T_33ec2_row0_col0" class="data row0 col0">Screening the general population</td>
+<td id="T_33ec2_row0_col1" class="data row0 col1">1.0%</td>
+<td id="T_33ec2_row0_col2" class="data row0 col2">15.4%</td>
+<td id="T_33ec2_row0_col3" class="data row0 col3">0.1%</td>
 </tr>
 <tr class="even">
-<td id="T_38b11_row1_col0" class="data row1 col0">Symptomatic clinic</td>
-<td id="T_38b11_row1_col1" class="data row1 col1">20.0%</td>
-<td id="T_38b11_row1_col2" class="data row1 col2">81.8%</td>
-<td id="T_38b11_row1_col3" class="data row1 col3">2.6%</td>
+<td id="T_33ec2_row1_col0" class="data row1 col0">Symptomatic clinic</td>
+<td id="T_33ec2_row1_col1" class="data row1 col1">20.0%</td>
+<td id="T_33ec2_row1_col2" class="data row1 col2">81.8%</td>
+<td id="T_33ec2_row1_col3" class="data row1 col3">2.6%</td>
 </tr>
 <tr class="odd">
-<td id="T_38b11_row2_col0" class="data row2 col0">High clinical suspicion</td>
-<td id="T_38b11_row2_col1" class="data row2 col1">60.0%</td>
-<td id="T_38b11_row2_col2" class="data row2 col2">96.4%</td>
-<td id="T_38b11_row2_col3" class="data row2 col3">13.6%</td>
+<td id="T_33ec2_row2_col0" class="data row2 col0">High clinical suspicion</td>
+<td id="T_33ec2_row2_col1" class="data row2 col1">60.0%</td>
+<td id="T_33ec2_row2_col2" class="data row2 col2">96.4%</td>
+<td id="T_33ec2_row2_col3" class="data row2 col3">13.6%</td>
 </tr>
 </tbody>
 </table>
@@ -3189,20 +3349,18 @@ font-style: inherit;">=</span> {<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"True positive"</span>: <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"#c0392b"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"#d9534f"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"Missed (false negative)"</span>: <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"#2c3e50"</span>,</span>
+font-style: inherit;">"Missed (false negative)"</span>: INK,</span>
 <span id="cb7-10">           <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"False alarm (false positive)"</span>: <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"#f5b041"</span>, <span class="st" style="color: #20794D;
+font-style: inherit;">"#ffc107"</span>, <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"True negative"</span>: <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"#d5d8dc"</span>}</span>
+font-style: inherit;">"#4e5d6c"</span>}</span>
 <span id="cb7-11">xs, ys <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> np.meshgrid(np.arange(<span class="dv" style="color: #AD0000;
@@ -3352,15 +3510,15 @@ font-style: inherit;">:.0%}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span>)</span></code></pre></div></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chance of cancer after a positive mammogram: 9 / 98 = 9%</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://jliu771.github.io/posts/sensitivity-is-not-ppv/index_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="https://jliu771.github.io/posts/sensitivity-is-not-ppv/index_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Chance of cancer after a positive mammogram: 9 / 98 = 9%</code></pre>
 </div>
 </div>
 <p>Seen this way, the answer is hard to miss: the few true positives are swamped by false alarms from the 990 healthy women, because 9% of a big number is bigger than 90% of a small one.</p>
@@ -3497,39 +3655,39 @@ font-style: inherit;">"index"</span>)</span></code></pre></div></div>
 <style type="text/css">
 </style>
 
-<table id="T_0384b" class="caption-top table table-sm table-striped small">
+<table id="T_1d125" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_0384b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Pre-test</th>
-<th id="T_0384b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">After positive</th>
-<th id="T_0384b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After negative</th>
+<th id="T_1d125_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Pre-test</th>
+<th id="T_1d125_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">After positive</th>
+<th id="T_1d125_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After negative</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_0384b_row0_col0" class="data row0 col0">1.0%</td>
-<td id="T_0384b_row0_col1" class="data row0 col1">15.4%</td>
-<td id="T_0384b_row0_col2" class="data row0 col2">0.1%</td>
+<td id="T_1d125_row0_col0" class="data row0 col0">1.0%</td>
+<td id="T_1d125_row0_col1" class="data row0 col1">15.4%</td>
+<td id="T_1d125_row0_col2" class="data row0 col2">0.1%</td>
 </tr>
 <tr class="even">
-<td id="T_0384b_row1_col0" class="data row1 col0">5.0%</td>
-<td id="T_0384b_row1_col1" class="data row1 col1">48.6%</td>
-<td id="T_0384b_row1_col2" class="data row1 col2">0.6%</td>
+<td id="T_1d125_row1_col0" class="data row1 col0">5.0%</td>
+<td id="T_1d125_row1_col1" class="data row1 col1">48.6%</td>
+<td id="T_1d125_row1_col2" class="data row1 col2">0.6%</td>
 </tr>
 <tr class="odd">
-<td id="T_0384b_row2_col0" class="data row2 col0">20.0%</td>
-<td id="T_0384b_row2_col1" class="data row2 col1">81.8%</td>
-<td id="T_0384b_row2_col2" class="data row2 col2">2.6%</td>
+<td id="T_1d125_row2_col0" class="data row2 col0">20.0%</td>
+<td id="T_1d125_row2_col1" class="data row2 col1">81.8%</td>
+<td id="T_1d125_row2_col2" class="data row2 col2">2.6%</td>
 </tr>
 <tr class="even">
-<td id="T_0384b_row3_col0" class="data row3 col0">50.0%</td>
-<td id="T_0384b_row3_col1" class="data row3 col1">94.7%</td>
-<td id="T_0384b_row3_col2" class="data row3 col2">9.5%</td>
+<td id="T_1d125_row3_col0" class="data row3 col0">50.0%</td>
+<td id="T_1d125_row3_col1" class="data row3 col1">94.7%</td>
+<td id="T_1d125_row3_col2" class="data row3 col2">9.5%</td>
 </tr>
 <tr class="odd">
-<td id="T_0384b_row4_col0" class="data row4 col0">80.0%</td>
-<td id="T_0384b_row4_col1" class="data row4 col1">98.6%</td>
-<td id="T_0384b_row4_col2" class="data row4 col2">29.6%</td>
+<td id="T_1d125_row4_col0" class="data row4 col0">80.0%</td>
+<td id="T_1d125_row4_col1" class="data row4 col1">98.6%</td>
+<td id="T_1d125_row4_col2" class="data row4 col2">29.6%</td>
 </tr>
 </tbody>
 </table>
@@ -3722,14 +3880,12 @@ font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">80</span>, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
+font-style: inherit;">=</span>PALETTE[<span class="dv" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">"#5d6d7e"</span>)</span>
+font-style: inherit;">1</span>])</span>
 <span id="cb13-10">    ax.axvline(lo, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -3737,9 +3893,7 @@ font-style: inherit;">":"</span>)<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">;</span> ax.axvline(hi, color<span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span><span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"black"</span>, ls<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span>INK, ls<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;

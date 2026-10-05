@@ -80,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-cb011fa16ec3edd61fc50c4df9a1c19d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -273,7 +273,22 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2017</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.precision"</span>, <span class="dv">3</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">4</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Chart colours that match the blog's dark (Superhero) theme</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># PANEL is a lighter navy at 55% opacity, so the page background shows through slightly</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>PANEL, LEGEND <span class="op">=</span> <span class="st">"#2b4c6f8c"</span>, <span class="st">"#254464"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>INK, MUTED, GRID <span class="op">=</span> <span class="st">"#ebebeb"</span>, <span class="st">"#a9b3bd"</span>, <span class="st">"#3d5a78"</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>PALETTE <span class="op">=</span> [<span class="st">"#df6919"</span>, <span class="st">"#5bc0de"</span>, <span class="st">"#5cb85c"</span>, <span class="st">"#ffc107"</span>, <span class="st">"#d9534f"</span>, <span class="st">"#4c9be8"</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"figure.facecolor"</span>: PANEL, <span class="st">"axes.facecolor"</span>: <span class="st">"none"</span>, <span class="st">"savefig.facecolor"</span>: PANEL,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"text.color"</span>: INK, <span class="st">"axes.labelcolor"</span>: INK, <span class="st">"axes.titlecolor"</span>: INK,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"xtick.color"</span>: MUTED, <span class="st">"ytick.color"</span>: MUTED, <span class="st">"axes.edgecolor"</span>: GRID, <span class="st">"grid.color"</span>: GRID,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"legend.facecolor"</span>: LEGEND, <span class="st">"legend.edgecolor"</span>: GRID, <span class="st">"legend.labelcolor"</span>: INK,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"axes.prop_cycle"</span>: plt.cycler(color<span class="op">=</span>PALETTE),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"boxplot.boxprops.color"</span>: INK, <span class="st">"boxplot.whiskerprops.color"</span>: INK, <span class="st">"boxplot.capprops.color"</span>: INK,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"boxplot.medianprops.color"</span>: PALETTE[<span class="dv">0</span>], <span class="st">"boxplot.flierprops.markeredgecolor"</span>: MUTED,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="spread-is-strength" class="level2">
@@ -382,7 +397,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>AB <span class="op">=</span> np.geomspace(<span class="dv">1</span>, <span class="dv">20000</span>, <span class="dv">400</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nu <span class="kw">in</span> [<span class="dv">160</span>, <span class="dv">300</span>, <span class="dv">490</span>]:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    plt.plot(AB, AB <span class="op">/</span> (AB <span class="op">+</span> nu), label<span class="op">=</span><span class="ss">f"ν = </span><span class="sc">{</span>nu<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="fl">0.5</span>, color<span class="op">=</span><span class="st">"grey"</span>, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="fl">0.5</span>, color<span class="op">=</span>MUTED, lw<span class="op">=</span><span class="fl">0.8</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"At-bats (log scale)"</span>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Weight on the player's own average"</span>)</span>
@@ -532,8 +547,8 @@ window.Quarto = {
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Values of nu the data support (95%): </span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss"> to </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.plot(grid, rel)</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span><span class="st">"grey"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">160</span>, <span class="dv">490</span>, color<span class="op">=</span><span class="st">"tab:orange"</span>, alpha<span class="op">=</span><span class="fl">0.15</span>, label<span class="op">=</span><span class="st">"range our guesses covered (σ 0.02 to 0.035)"</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span>MUTED, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">160</span>, <span class="dv">490</span>, color<span class="op">=</span>PALETTE[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.2</span>, label<span class="op">=</span><span class="st">"range our guesses covered (σ 0.02 to 0.035)"</span>)</span>
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">30</span>, <span class="dv">1</span>)</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Prior strength ν (log scale)"</span>)</span>
@@ -574,8 +589,8 @@ window.Quarto = {
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    h, ab, _ <span class="op">=</span> simulate(n_players)</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    rel, (lo, hi) <span class="op">=</span> profile_curve(h, ab, grid)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    plt.plot(grid, rel, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>n_players<span class="sc">:,}</span><span class="ss"> players: ν from </span><span class="sc">{</span>lo<span class="sc">:.0f}</span><span class="ss"> to </span><span class="sc">{</span>hi<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.axvline(nu_hat, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f"true ν = </span><span class="sc">{</span>nu_hat<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span><span class="st">"grey"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.axvline(nu_hat, color<span class="op">=</span>INK, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f"true ν = </span><span class="sc">{</span>nu_hat<span class="sc">:.0f}</span><span class="ss">"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span>MUTED, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">12</span>, <span class="fl">0.5</span>)</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Prior strength ν (log scale)"</span>)</span>
@@ -622,10 +637,10 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>   30 players: 100 replications done (2.0 s so far)
-  100 players: 100 replications done (2.8 s so far)
-  300 players: 100 replications done (4.0 s so far)
- 1000 players: 100 replications done (6.4 s so far)
-True nu = 367. Done in 6.4 s.</code></pre>
+  100 players: 100 replications done (2.9 s so far)
+  300 players: 100 replications done (4.1 s so far)
+ 1000 players: 100 replications done (6.5 s so far)
+True nu = 367. Done in 6.5 s.</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -695,7 +710,7 @@ True nu = 367. Done in 6.4 s.</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="dv">4</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ax1.boxplot([results.loc[results.players <span class="op">==</span> s, <span class="st">"nu_hat"</span>].clip(upper<span class="op">=</span><span class="dv">5000</span>) <span class="cf">for</span> s <span class="kw">in</span> sizes],</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>            tick_labels<span class="op">=</span>[<span class="bu">str</span>(s) <span class="cf">for</span> s <span class="kw">in</span> sizes])</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax1.axhline(nu_hat, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax1.axhline(nu_hat, color<span class="op">=</span>INK, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax1.set_yscale(<span class="st">"log"</span>)</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ax1.set_yticks([<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>, <span class="dv">2000</span>, <span class="dv">5000</span>], labels<span class="op">=</span>[<span class="st">"100"</span>, <span class="st">"200"</span>, <span class="st">"500"</span>, <span class="st">"1,000"</span>, <span class="st">"2,000"</span>, <span class="st">"5,000"</span>])</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>ax1.minorticks_off()</span>
@@ -706,8 +721,8 @@ True nu = 367. Done in 6.4 s.</code></pre>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> s <span class="kw">in</span> sizes:</span>
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    sub <span class="op">=</span> results[results.players <span class="op">==</span> s]</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    ax2.scatter(sub[<span class="st">"nu_hat"</span>].clip(upper<span class="op">=</span><span class="dv">5000</span>) <span class="op">/</span> nu_hat, sub[<span class="st">"coverage"</span>], s<span class="op">=</span><span class="dv">12</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>s<span class="sc">}</span><span class="ss"> players"</span>)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax2.axvline(<span class="dv">1</span>, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax2.axhline(<span class="fl">0.95</span>, color<span class="op">=</span><span class="st">"grey"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>ax2.axvline(<span class="dv">1</span>, color<span class="op">=</span>INK, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>ax2.axhline(<span class="fl">0.95</span>, color<span class="op">=</span>MUTED, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax2.set_xscale(<span class="st">"log"</span>)</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"Estimated ν ÷ true ν (log scale)"</span>)</span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"Coverage of 95</span><span class="sc">% i</span><span class="st">ntervals"</span>)</span>
@@ -765,7 +780,7 @@ True nu = 367. Done in 6.4 s.</code></pre>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Values of nu the data support (95%): </span><span class="sc">{</span>lo_rat<span class="sc">:.1f}</span><span class="ss"> to </span><span class="sc">{</span>hi_rat<span class="sc">:.1f}</span><span class="ss">"</span>)</span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>plt.plot(grid_rat, rel_rat)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span><span class="st">"grey"</span>, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="op">-</span><span class="fl">1.92</span>, color<span class="op">=</span>MUTED, ls<span class="op">=</span><span class="st">":"</span>, lw<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.axvspan(lo_rat, hi_rat, alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">12</span>, <span class="fl">0.5</span>)</span>
@@ -798,7 +813,7 @@ Values of nu the data support (95%): 9.3 to 32.7</code></pre>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    low, high <span class="op">=</span> stats.beta.ppf([<span class="fl">0.025</span>, <span class="fl">0.975</span>], a, b)</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"prior"</span>: label, <span class="st">"nu"</span>: nu, <span class="st">"posterior mean"</span>: a <span class="op">/</span> (a <span class="op">+</span> b), <span class="st">"95</span><span class="sc">% lo</span><span class="st">w"</span>: low, <span class="st">"95</span><span class="sc">% hi</span><span class="st">gh"</span>: high})</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, stats.beta(a, b).pdf(x), label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss"> (ν = </span><span class="sc">{</span>nu<span class="sc">:.0f}</span><span class="ss">)"</span>)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.axvline(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> n[<span class="op">-</span><span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">"raw rate 4/14"</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>plt.axvline(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">/</span> n[<span class="op">-</span><span class="dv">1</span>], color<span class="op">=</span>INK, ls<span class="op">=</span><span class="st">"--"</span>, lw<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="st">"raw rate 4/14"</span>)</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Tumour probability in the current experiment"</span>)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Density"</span>)</span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Same data, same mean, different prior strength"</span>)</span>
