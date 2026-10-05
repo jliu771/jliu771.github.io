@@ -1,1 +1,14 @@
 /* css styles */
+
+/* Home-page banner image: on narrow screens the artwork sits behind the title,
+   so darken it a little to keep the title readable. */
+@media (max-width: 767.98px) {
+  .quarto-title-banner { position: relative; }
+  .quarto-title-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(19, 41, 63, 0.72);
+  }
+  .quarto-title-banner > * { position: relative; }
+}

@@ -10,5 +10,8 @@ listing:
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: true
+# Banner image: swap the file name to try the others in images/
+#   banner-odds-field.svg | banner-odds-readout.svg | banner-card-curve.svg
+title-block-banner: images/banner-odds-field.svg
+title-block-banner-color: "#ebebeb"
 ---
