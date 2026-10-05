@@ -1,0 +1,6 @@
+# Options here apply to every post in this folder.
+# Notebooks (.ipynb) are never re-run when the site is built: Quarto uses the
+# outputs saved in each notebook, so run and save a notebook before publishing.
+
+# Banner-style title blocks
+title-block-banner: true

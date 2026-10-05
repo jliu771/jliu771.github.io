@@ -1,0 +1,7 @@
+/.quarto/
+/_site/
+**/*.quarto_ipynb
+.ipynb_checkpoints/
+.virtual_documents/
+anaconda_projects/
+posts/**/data/

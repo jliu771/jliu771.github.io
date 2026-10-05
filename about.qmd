@@ -1,0 +1,31 @@
+---
+title: "About"
+---
+
+**Actually, Tell Me the Odds** is a blog about statistics and computing for people who would really rather...not. But hopefully it will convince people that maybe we should learn more about how chances, statistics, probability affect our lives. 
+
+It's written mainly for helping **healthcare providers**: doctors, nurses, pharmacists and everyone else who orders tests, reads studies and explains risk to patients, often with minimal formal training in statistics. Data scientists, statisticians and curious laypeople are just as welcome, and I will absolutely need your help.
+
+Each post takes one idea and works through it with real or realistic examples:
+
+- **Clinics:** diagnostic tests, risk, and the phrases we use without thinking ("90% sensitive, so a 10% chance…").
+- **Cards:** pull rates, pack odds and prices from trading-card collecting, a surprisingly good playground for probability.
+- **Code:** everything is computed in Python, and the code is there for anyone who wants it. Click **Show the code** to see it, or ignore it entirely; the posts make sense without it.
+
+The thread running through all of it is **Bayesian thinking**: start with what you knew before, then update it honestly with new evidence.
+
+## Why this name?
+
+In *The Empire Strikes Back*, C-3PO starts reciting the odds of surviving an asteroid field, and Han Solo cuts him off: *"Never tell me the odds!"*
+
+This blog takes the other side. In medicine, as in card collecting, knowing the odds, and knowing how to read them, is the whole game. So: actually, tell me the odds.
+
+## About me
+
+I'm Jonathan, and I work with data. You can find the code behind this blog on [GitHub](https://github.com/jliu771).
+
+At the time of creation of this blog, I consider myself a relatively amateur programmer and mediocre statistician. 
+
+The truth is, it's all relative. I was a medical student, and then a pediatrics resident at USC/LA General, as well as a PhD grad from Caltech. At this level, I still don't feel like an expert in anything- I hope to surround myself with people who know more than me as long as I can, as those people have graciously helped me become whatever it is I am today.
+
+The idea then is to pay it forward- which is a task this blog hopes to accomplish. We're going to discuss a variety of topics and datasets - Pokemon Cards (my very expensive hobby of buying pricy cardboard), medicine, pediatrics, data science, Bayesian statistics, data exploration and visualization, and much more. Hopefully you learn something, even if it's a new way of saying or explaining something old.
