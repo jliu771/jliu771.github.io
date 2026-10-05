@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jonathan">
+<meta name="dcterms.date" content="2026-10-04">
+<meta name="description" content="Why sensitivity doesn’t tell you enough about whether a patient has a disease, what PPV and NPV really mean, and how to think about any test result in counts.">
+
+<title>“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it” – Actually, Tell Me the Odds</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Actually, Tell Me the Odds</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jliu771"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">“The test is 90% sensitive, so there’s about a 10% chance we’ll miss it”</h1>
+            <p class="subtitle lead">Sensitivity, specificity, PPV and NPV for people who order tests, explained with 1,000 patients and a little Python</p>
+                  <div>
+        <div class="description">
+          Why sensitivity doesn’t tell you enough about whether a patient has a disease, what PPV and NPV really mean, and how to think about any test result in counts.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">diagnostic tests</div>
+                <div class="quarto-category">Bayes</div>
+                <div class="quarto-category">statistics for clinicians</div>
+                <div class="quarto-category">likelihood ratios</div>
+                <div class="quarto-category">PPV</div>
+                <div class="quarto-category">NPV</div>
+                <div class="quarto-category">omission rate</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Jonathan </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">October 4, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#two-questions-that-sound-alike" id="toc-two-questions-that-sound-alike" class="nav-link active" data-scroll-target="#two-questions-that-sound-alike">1. Two questions that sound alike</a></li>
+  <li><a href="#follow-1000-patients-through-the-test" id="toc-follow-1000-patients-through-the-test" class="nav-link" data-scroll-target="#follow-1000-patients-through-the-test">2. Follow 1,000 patients through the test</a></li>
+  <li><a href="#same-test-different-patients" id="toc-same-test-different-patients" class="nav-link" data-scroll-target="#same-test-different-patients">3. Same test, different patients</a></li>
+  <li><a href="#doctors-find-this-hard-and-thats-not-a-personal-failing" id="toc-doctors-find-this-hard-and-thats-not-a-personal-failing" class="nav-link" data-scroll-target="#doctors-find-this-hard-and-thats-not-a-personal-failing">4. Doctors find this hard, and that’s not a personal failing</a></li>
+  <li><a href="#a-bedside-shortcut-likelihood-ratios" id="toc-a-bedside-shortcut-likelihood-ratios" class="nav-link" data-scroll-target="#a-bedside-shortcut-likelihood-ratios">5. A bedside shortcut: likelihood ratios</a></li>
+  <li><a href="#checking-the-maths-by-simulation" id="toc-checking-the-maths-by-simulation" class="nav-link" data-scroll-target="#checking-the-maths-by-simulation">6. Checking the maths by simulation</a></li>
+  <li><a href="#the-tests-numbers-are-estimates-too" id="toc-the-tests-numbers-are-estimates-too" class="nav-link" data-scroll-target="#the-tests-numbers-are-estimates-too">7. The test’s numbers are estimates too</a></li>
+  <li><a href="#phrases-to-retire-and-what-to-say-instead" id="toc-phrases-to-retire-and-what-to-say-instead" class="nav-link" data-scroll-target="#phrases-to-retire-and-what-to-say-instead">8. Phrases to retire, and what to say instead</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
+  <li><a href="#references-and-further-reading" id="toc-references-and-further-reading" class="nav-link" data-scroll-target="#references-and-further-reading">References and further reading</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>You’ll hear some version of this sentence on rounds, in notes, and in discussion:</p>
+<blockquote class="blockquote">
+<p>“The test is 90% sensitive, so there’s about a 10% chance we missed it…”</p>
+</blockquote>
+<p>To be specific, this is often after a patient tested negative for something.</p>
+<p>It sounds reasonable, and is the worst and most dangerous kind of true: <em>technically true</em>. It is the definition of sensitivity and the false negative rate, as many of us are taught in medical school:</p>
+<p><span class="math display">\[
+\text{Sensitivity} = \frac{\text{sick patients who test positive}}{\text{all sick patients}} = \frac{TP}{TP + FN}
+\]</span></p>
+<p><span class="math display">\[
+\text{False negative rate} = \frac{\text{sick patients who test negative}}{\text{all sick patients}} = \frac{FN}{TP + FN} = 1 - \text{Sensitivity}
+\]</span></p>
+<p><em>(TP = true positives, the sick patients the test catches; FN = false negatives, the sick patients it misses.)</em></p>
+<p>I once heard this during rounds, as a 4th year medical student. I should admit, at the time I knew it was wrong, but I didn’t have the courage to say anything. There were two reasons:</p>
+<ol type="1">
+<li>I was a medical student (those of you who remember being one will understand)</li>
+<li>I wasn’t prepared to answer the next question effectively and succinctly: <strong>Why?</strong></li>
+</ol>
+<p>Because it answers the wrong question. The 10% describes <em>sick</em> patients: of everyone who has the disease, 1 in 10 tests negative. But after a negative result, we don’t know our patient is sick; the question that matters is <em>of everyone who tests negative, how many are actually sick?</em> Depending on the patient in front of you, that can be a fraction of a percent or more than one in seven. The sentence quietly swaps those two questions, and that swap is one of the most common statistical errors in medicine.</p>
+<p>This post untangles it. There’s no heavy maths. The main tool is counting: imagine 1,000 patients, and follow them through the test. A little Python does the counting for us, and you can skip the code entirely and still follow every step.</p>
+<p><strong>What you’ll come away with</strong></p>
+<ol type="1">
+<li>What sensitivity and specificity actually measure, and what they don’t.</li>
+<li>The two numbers you really want at the bedside (PPV and NPV), and why they depend on who you’re testing.</li>
+<li>A shortcut clinicians can use mentally: likelihood ratios.</li>
+<li>Why the test’s own numbers come with uncertainty of their own.</li>
+<li>A short glossary of phrases to retire.</li>
+</ol>
+<div id="600d4e97" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">42</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">"display.precision"</span>, <span class="dv">3</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">7</span>, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="two-questions-that-sound-alike" class="level2">
+<h2 class="anchored" data-anchor-id="two-questions-that-sound-alike">1. Two questions that sound alike</h2>
+<p>Sensitivity and specificity describe the <strong>test</strong>. They answer questions that start from the patient’s true condition:</p>
+<ul>
+<li><strong>Sensitivity:</strong> <em>of the people who have the disease</em>, what fraction test positive?</li>
+<li><strong>Specificity:</strong> <em>of the people who don’t have the disease</em>, what fraction test negative?</li>
+</ul>
+<p>Now this presupposed you have the ground truth about whether or not the patient has a disease. As a clinician, this is not the information we have, it’s the information <em>we want</em>. We should ask the reverse question:</p>
+<ul>
+<li><strong>Positive predictive value (PPV):</strong> <em>of the people who test positive</em>, what fraction have the disease?</li>
+<li><strong>Negative predictive value (NPV):</strong> <em>of the people who test negative</em>, what fraction are disease-free?</li>
+</ul>
+<p>“90% sensitive” means that 10% of people <strong>with</strong> the disease test negative. It says nothing directly about how likely your patient is to have it.</p>
+<p>To answer that, you need one more ingredient: how likely the disease was <em>before</em> you tested. Clinicians call this the <strong>pre-test probability</strong>; in a population it’s the <strong>prevalence</strong>. Typically, we aren’t walking around with the prevalence of diseases in our heads (some brilliant physicians are exempt, of course).</p>
+</section>
+<section id="follow-1000-patients-through-the-test" class="level2">
+<h2 class="anchored" data-anchor-id="follow-1000-patients-through-the-test">2. Follow 1,000 patients through the test</h2>
+<p>Take a test with <strong>90% sensitivity</strong> and <strong>95% specificity</strong>, and use it in a clinic where <strong>2%</strong> of the patients tested actually have the disease. Instead of percentages, count people.</p>
+<div id="102e8671" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> follow_patients(pretest, sensitivity, specificity, n<span class="op">=</span><span class="dv">1000</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Expected counts when n patients with a given pre-test probability are tested."""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    sick <span class="op">=</span> n <span class="op">*</span> pretest</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    well <span class="op">=</span> n <span class="op">-</span> sick</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    table <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"Test positive"</span>: [sick <span class="op">*</span> sensitivity, well <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> specificity)],</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">"Test negative"</span>: [sick <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> sensitivity), well <span class="op">*</span> specificity]},</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        index<span class="op">=</span>[<span class="st">"Has the disease"</span>, <span class="st">"Doesn't have it"</span>])</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    table[<span class="st">"Total"</span>] <span class="op">=</span> table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    table.loc[<span class="st">"Total"</span>] <span class="op">=</span> table.<span class="bu">sum</span>()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> table</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> follow_patients(pretest<span class="op">=</span><span class="fl">0.02</span>, sensitivity<span class="op">=</span><span class="fl">0.90</span>, specificity<span class="op">=</span><span class="fl">0.95</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>table.<span class="bu">round</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Test positive</th>
+<th data-quarto-table-cell-role="th">Test negative</th>
+<th data-quarto-table-cell-role="th">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Has the disease</th>
+<td>18.0</td>
+<td>2.0</td>
+<td>20.0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Doesn't have it</th>
+<td>49.0</td>
+<td>931.0</td>
+<td>980.0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Total</th>
+<td>67.0</td>
+<td>933.0</td>
+<td>1000.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Read the table one row at a time and then one column at a time.</p>
+<ul>
+<li><strong>Rows (what the test does):</strong> of the 20 people with the disease, 18 test positive, which is the 90% sensitivity. Of the 980 without it, 931 test negative, which is the 95% specificity.</li>
+<li><strong>Columns (what you see):</strong> 67 people test positive. Only 18 of them have the disease. The other 49 are false alarms from the much larger healthy group.</li>
+</ul>
+<p>So a positive result means a 27% chance of disease, not 90%. A negative result leaves a 2 in 933 chance, about 0.2%. In this clinic, a negative result is wrong far less often than 1 time in 10.</p>
+<p><strong>Four names, two denominators.</strong> The “10% chance we missed it” and the number you actually need after a negative test both start from the same 2 missed patients in the table. What changes is what you divide by:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Share of…</th>
+<th>Formula</th>
+<th>In this clinic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sensitivity</td>
+<td>sick patients who test positive</td>
+<td>TP / (TP + FN)</td>
+<td>18 / 20 = 90%</td>
+</tr>
+<tr class="even">
+<td>False negative rate</td>
+<td>sick patients who test negative</td>
+<td>FN / (TP + FN)</td>
+<td>2 / 20 = 10%</td>
+</tr>
+<tr class="odd">
+<td>Negative predictive value (NPV)</td>
+<td>negative tests that are truly disease-free</td>
+<td>TN / (FN + TN)</td>
+<td>931 / 933 = 99.8%</td>
+</tr>
+<tr class="even">
+<td>False omission rate (1 − NPV)</td>
+<td>negative tests that are actually sick</td>
+<td>FN / (FN + TN)</td>
+<td>2 / 933 = 0.2%</td>
+</tr>
+</tbody>
+</table>
+<p><em>(TN = true negatives, the healthy patients who test negative.)</em></p>
+<p>“10% chance we missed it” is the false negative rate. It’s correct, but it describes patients we already know are sick. After a negative test, the number we want is the false omission rate. In this clinic it’s about fifty times smaller, and Section 3 shows it can also be larger.</p>
+<p>A warning about the names: some older textbooks and papers use “false negative rate” loosely to mean the false omission rate, which adds to the confusion. When it matters, say the denominator out loud: “10% <em>of sick patients</em> test negative” versus “0.2% <em>of negative tests</em> are wrong”.</p>
+<div id="479a2ab3" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predictive_values(pretest, sensitivity, specificity):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""PPV and NPV from Bayes' theorem."""</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    true_pos <span class="op">=</span> pretest <span class="op">*</span> sensitivity</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    false_pos <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> pretest) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> specificity)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    true_neg <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> pretest) <span class="op">*</span> specificity</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    false_neg <span class="op">=</span> pretest <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> sensitivity)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> true_pos <span class="op">/</span> (true_pos <span class="op">+</span> false_pos), true_neg <span class="op">/</span> (true_neg <span class="op">+</span> false_neg)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ppv, npv <span class="op">=</span> predictive_values(<span class="fl">0.02</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"PPV: </span><span class="sc">{</span>ppv<span class="sc">:.1%}</span><span class="ss"> of positives have the disease"</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"NPV: </span><span class="sc">{</span>npv<span class="sc">:.1%}</span><span class="ss"> of negatives are disease-free, so </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> npv<span class="sc">:.2%}</span><span class="ss"> of negatives are missed cases"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>PPV: 26.9% of positives have the disease
+NPV: 99.8% of negatives are disease-free, so 0.21% of negatives are missed cases</code></pre>
+</div>
+</div>
+<p>That function is just Bayes’ theorem written as counting:</p>
+<p><span class="math display">\[\text{PPV} = \frac{\text{true positives}}{\text{all positives}} = \frac{p \cdot \text{sens}}{p \cdot \text{sens} + (1-p)(1-\text{spec})},\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the pre-test probability. Notice that <span class="math inline">\(p\)</span> appears in every term. Change who you test, and the PPV changes even though the test hasn’t.</p>
+</section>
+<section id="same-test-different-patients" class="level2">
+<h2 class="anchored" data-anchor-id="same-test-different-patients">3. Same test, different patients</h2>
+<p>The test’s sensitivity and specificity stay the same whether you use it on a well person at a screening fair or on a patient you already strongly suspect. The predictive values don’t.</p>
+<div id="14116af5" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pretest <span class="op">=</span> np.geomspace(<span class="fl">0.001</span>, <span class="fl">0.95</span>, <span class="dv">300</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ppv, npv <span class="op">=</span> predictive_values(pretest, <span class="fl">0.90</span>, <span class="fl">0.95</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.plot(pretest, ppv, label<span class="op">=</span><span class="st">"Chance of disease after a POSITIVE test (PPV)"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.plot(pretest, <span class="dv">1</span> <span class="op">-</span> npv, label<span class="op">=</span><span class="st">"Chance of disease after a NEGATIVE test (1 − NPV)"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.plot(pretest, pretest, color<span class="op">=</span><span class="st">"grey"</span>, ls<span class="op">=</span><span class="st">":"</span>, label<span class="op">=</span><span class="st">"Chance before testing"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p, where <span class="kw">in</span> [(<span class="fl">0.01</span>, <span class="st">"screening"</span>), (<span class="fl">0.2</span>, <span class="st">"symptomatic clinic"</span>), (<span class="fl">0.6</span>, <span class="st">"high suspicion"</span>)]:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ax.axvline(p, color<span class="op">=</span><span class="st">"grey"</span>, lw<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ax.text(p <span class="op">*</span> <span class="fl">1.08</span>, <span class="fl">0.45</span>, where, fontsize<span class="op">=</span><span class="dv">8</span>, rotation<span class="op">=</span><span class="dv">90</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">"log"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.95</span>], labels<span class="op">=</span>[<span class="st">"0.1%"</span>, <span class="st">"1%"</span>, <span class="st">"10%"</span>, <span class="st">"50%"</span>, <span class="st">"95%"</span>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Pre-test probability (log scale)"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Probability of disease"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"A 90</span><span class="sc">% s</span><span class="st">ensitive, 95</span><span class="sc">% s</span><span class="st">pecific test in different settings"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="f76dbb43" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> setting, p <span class="kw">in</span> [(<span class="st">"Screening the general population"</span>, <span class="fl">0.01</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"Symptomatic clinic"</span>, <span class="fl">0.20</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">"High clinical suspicion"</span>, <span class="fl">0.60</span>)]:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ppv, npv <span class="op">=</span> predictive_values(p, <span class="fl">0.90</span>, <span class="fl">0.95</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"Setting"</span>: setting, <span class="st">"Before testing"</span>: p,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"After positive (PPV)"</span>: ppv, <span class="st">"After negative (1 − NPV)"</span>: <span class="dv">1</span> <span class="op">-</span> npv})</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).style.<span class="bu">format</span>({c: <span class="st">"</span><span class="sc">{:.1%}</span><span class="st">"</span> <span class="cf">for</span> c <span class="kw">in</span> [<span class="st">"Before testing"</span>, <span class="st">"After positive (PPV)"</span>, <span class="st">"After negative (1 − NPV)"</span>]}).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<style type="text/css">
+</style>
+
+<table id="T_38b11" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_38b11_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Setting</th>
+<th id="T_38b11_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Before testing</th>
+<th id="T_38b11_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After positive (PPV)</th>
+<th id="T_38b11_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">After negative (1 − NPV)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_38b11_row0_col0" class="data row0 col0">Screening the general population</td>
+<td id="T_38b11_row0_col1" class="data row0 col1">1.0%</td>
+<td id="T_38b11_row0_col2" class="data row0 col2">15.4%</td>
+<td id="T_38b11_row0_col3" class="data row0 col3">0.1%</td>
+</tr>
+<tr class="even">
+<td id="T_38b11_row1_col0" class="data row1 col0">Symptomatic clinic</td>
+<td id="T_38b11_row1_col1" class="data row1 col1">20.0%</td>
+<td id="T_38b11_row1_col2" class="data row1 col2">81.8%</td>
+<td id="T_38b11_row1_col3" class="data row1 col3">2.6%</td>
+</tr>
+<tr class="odd">
+<td id="T_38b11_row2_col0" class="data row2 col0">High clinical suspicion</td>
+<td id="T_38b11_row2_col1" class="data row2 col1">60.0%</td>
+<td id="T_38b11_row2_col2" class="data row2 col2">96.4%</td>
+<td id="T_38b11_row2_col3" class="data row2 col3">13.6%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The same test result means very different things:</p>
+<ul>
+<li><strong>Screening:</strong> most positives are false alarms (PPV about 15%). A positive result calls for confirmation, not a diagnosis.</li>
+<li><strong>High suspicion:</strong> a negative result still leaves about a 1 in 7 chance of disease. That’s far too high to “rule out” anything, even though the test is “90% sensitive”.</li>
+</ul>
+<p>That second point is the real danger in our opening sentence. The 10% figure doesn’t tell you the chance your patient is sick. It tells you how often the test misses people who <em>are</em> sick, and when you’re testing someone you already suspect, those misses add up.</p>
+</section>
+<section id="doctors-find-this-hard-and-thats-not-a-personal-failing" class="level2">
+<h2 class="anchored" data-anchor-id="doctors-find-this-hard-and-thats-not-a-personal-failing">4. Doctors find this hard, and that’s not a personal failing</h2>
+<p>In a well-known study, Gerd Gigerenzer gave 160 gynecologists this problem about mammography screening:</p>
+<blockquote class="blockquote">
+<p>About 1% of women screened have breast cancer. If a woman has breast cancer, the probability that she tests positive is 90%. If she doesn’t, the probability that she still tests positive is 9%. A woman tests positive. What is the probability she actually has breast cancer?</p>
+</blockquote>
+<p>Most of them (about 60%, a little over half) answered 80–90%. Only one in five chose the correct answer, about 10% probability. After a short training session that taught them to think in counts (“natural frequencies”) instead of percentages, 87% got problems like this right.</p>
+<p>Here are those 1,000 women, as a picture.</p>
+<div id="bc565d15" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> follow_patients(pretest<span class="op">=</span><span class="fl">0.01</span>, sensitivity<span class="op">=</span><span class="fl">0.90</span>, specificity<span class="op">=</span><span class="fl">0.91</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tp <span class="op">=</span> <span class="bu">round</span>(counts.loc[<span class="st">"Has the disease"</span>, <span class="st">"Test positive"</span>])     <span class="co"># 9</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fn <span class="op">=</span> <span class="bu">round</span>(counts.loc[<span class="st">"Has the disease"</span>, <span class="st">"Test negative"</span>])     <span class="co"># 1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>fp <span class="op">=</span> <span class="bu">round</span>(counts.loc[<span class="st">"Doesn't have it"</span>, <span class="st">"Test positive"</span>])     <span class="co"># 89</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tn <span class="op">=</span> <span class="dv">1000</span> <span class="op">-</span> tp <span class="op">-</span> fn <span class="op">-</span> fp</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> ([<span class="st">"True positive"</span>] <span class="op">*</span> tp <span class="op">+</span> [<span class="st">"Missed (false negative)"</span>] <span class="op">*</span> fn</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>          <span class="op">+</span> [<span class="st">"False alarm (false positive)"</span>] <span class="op">*</span> fp <span class="op">+</span> [<span class="st">"True negative"</span>] <span class="op">*</span> tn)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>colours <span class="op">=</span> {<span class="st">"True positive"</span>: <span class="st">"#c0392b"</span>, <span class="st">"Missed (false negative)"</span>: <span class="st">"#2c3e50"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">"False alarm (false positive)"</span>: <span class="st">"#f5b041"</span>, <span class="st">"True negative"</span>: <span class="st">"#d5d8dc"</span>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>xs, ys <span class="op">=</span> np.meshgrid(np.arange(<span class="dv">40</span>), np.arange(<span class="dv">25</span>))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>xs, ys <span class="op">=</span> xs.ravel(), ys.ravel()[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">5.4</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> g, col <span class="kw">in</span> colours.items():</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> [i <span class="cf">for</span> i, grp <span class="kw">in</span> <span class="bu">enumerate</span>(groups) <span class="cf">if</span> grp <span class="op">==</span> g]</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    n_g <span class="op">=</span> <span class="bu">len</span>(idx)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    ax.scatter(xs[idx], ys[idx], s<span class="op">=</span><span class="dv">38</span>, color<span class="op">=</span>col, label<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>g<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>n_g<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>ax.set_axis_off()</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"1,000 women screened: </span><span class="sc">{</span>tp <span class="op">+</span> fp<span class="sc">}</span><span class="ss"> test positive, but only </span><span class="sc">{</span>tp<span class="sc">}</span><span class="ss"> of them have cancer"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper center"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.02</span>), ncol<span class="op">=</span><span class="dv">2</span>, frameon<span class="op">=</span><span class="va">False</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Chance of cancer after a positive mammogram: </span><span class="sc">{</span>tp<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>tp <span class="op">+</span> fp<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>tp <span class="op">/</span> (tp <span class="op">+</span> fp)<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Chance of cancer after a positive mammogram: 9 / 98 = 9%</code></pre>
+</div>
+</div>
+<p>Seen this way, the answer is hard to miss: the few true positives are swamped by false alarms from the 990 healthy women, because 9% of a big number is bigger than 90% of a small one.</p>
+<p><strong>The habit worth building:</strong> when you meet a test statistic, translate it into “out of 1,000 people like my patient, how many…?” before you interpret it.</p>
+<p>If you need to pull out your phone’s calculator and draw the 2 x 2 table, do it. It’s worth it.</p>
+</section>
+<section id="a-bedside-shortcut-likelihood-ratios" class="level2">
+<h2 class="anchored" data-anchor-id="a-bedside-shortcut-likelihood-ratios">5. A bedside shortcut: likelihood ratios</h2>
+<p>Redrawing a table for every patient is slow. <strong>Likelihood ratios</strong> package a test’s sensitivity and specificity into one number per result:</p>
+<ul>
+<li><strong>LR+</strong> = sensitivity ÷ (1 − specificity): how much a positive result multiplies the odds of disease.</li>
+<li><strong>LR−</strong> = (1 − sensitivity) ÷ specificity: how much a negative result multiplies them.</li>
+</ul>
+<p>The rule is simple: <strong>post-test odds = pre-test odds × likelihood ratio</strong>, where odds = p ÷ (1 − p). For our test, LR+ = 0.90 ÷ 0.05 = 18 and LR− = 0.10 ÷ 0.95 ≈ 0.11. A rough guide often taught: LRs above 10 or below 0.1 change the picture a lot; values between about 0.5 and 2 barely change it.</p>
+<div id="9891db76" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> post_test_probability(pretest, likelihood_ratio):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    odds <span class="op">=</span> pretest <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> pretest)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    post_odds <span class="op">=</span> odds <span class="op">*</span> likelihood_ratio</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> post_odds <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> post_odds)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>sens, spec <span class="op">=</span> <span class="fl">0.90</span>, <span class="fl">0.95</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>lr_pos, lr_neg <span class="op">=</span> sens <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> spec), (<span class="dv">1</span> <span class="op">-</span> sens) <span class="op">/</span> spec</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LR+ = </span><span class="sc">{</span>lr_pos<span class="sc">:.1f}</span><span class="ss">, LR- = </span><span class="sc">{</span>lr_neg<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> []</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p <span class="kw">in</span> [<span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.20</span>, <span class="fl">0.50</span>, <span class="fl">0.80</span>]:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    rows.append({<span class="st">"Pre-test"</span>: p,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"After positive"</span>: post_test_probability(p, lr_pos),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"After negative"</span>: post_test_probability(p, lr_neg)})</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(rows).style.<span class="bu">format</span>(<span class="st">"</span><span class="sc">{:.1%}</span><span class="st">"</span>).hide(axis<span class="op">=</span><span class="st">"index"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>LR+ = 18.0, LR- = 0.105</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<style type="text/css">
+</style>
+
+<table id="T_0384b" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_0384b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Pre-test</th>
+<th id="T_0384b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">After positive</th>
+<th id="T_0384b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">After negative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_0384b_row0_col0" class="data row0 col0">1.0%</td>
+<td id="T_0384b_row0_col1" class="data row0 col1">15.4%</td>
+<td id="T_0384b_row0_col2" class="data row0 col2">0.1%</td>
+</tr>
+<tr class="even">
+<td id="T_0384b_row1_col0" class="data row1 col0">5.0%</td>
+<td id="T_0384b_row1_col1" class="data row1 col1">48.6%</td>
+<td id="T_0384b_row1_col2" class="data row1 col2">0.6%</td>
+</tr>
+<tr class="odd">
+<td id="T_0384b_row2_col0" class="data row2 col0">20.0%</td>
+<td id="T_0384b_row2_col1" class="data row2 col1">81.8%</td>
+<td id="T_0384b_row2_col2" class="data row2 col2">2.6%</td>
+</tr>
+<tr class="even">
+<td id="T_0384b_row3_col0" class="data row3 col0">50.0%</td>
+<td id="T_0384b_row3_col1" class="data row3 col1">94.7%</td>
+<td id="T_0384b_row3_col2" class="data row3 col2">9.5%</td>
+</tr>
+<tr class="odd">
+<td id="T_0384b_row4_col0" class="data row4 col0">80.0%</td>
+<td id="T_0384b_row4_col1" class="data row4 col1">98.6%</td>
+<td id="T_0384b_row4_col2" class="data row4 col2">29.6%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>These match the PPV and 1 − NPV values from Section 3, because they are the same calculation in a different form. The advantage is that likelihood ratios chain: if two tests are genuinely independent given the disease status, you can multiply the odds by one LR and then the other. (In practice tests often aren’t independent, for example two imaging studies that miss the same small lesions, so chaining overstates certainty. Repeating the same test is the extreme case.)</p>
+<p>The likelihood ratio is also known as the <strong>Bayes Factor</strong>. Different name, same principle: <em>Given a test result</em>, how much <em>more or less</em> likely is the patient to have a disease. 3Blue1Brown of Youtube fame has <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank">a great video</a> on it. As mentioned above, I’m not typically walking around with a disease prevalence memorized, and so I often cannot compute PPV/NPV explicitly. But knowing sensitivity and specificity lets me estimate the likelikehood ratio or Bayes factor, and lets me discuss a patient’s relative risk with a test result.</p>
+</section>
+<section id="checking-the-maths-by-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="checking-the-maths-by-simulation">6. Checking the maths by simulation</h2>
+<p>A theme of this blog is that a computer lets you check a formula instead of trusting it. Simulate 200,000 patients one by one, each with a 20% pre-test probability, run each through a 90%/95% test, and simply count.</p>
+<div id="b1b37f5b" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">200_000</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>has_disease <span class="op">=</span> rng.random(n) <span class="op">&lt;</span> <span class="fl">0.20</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>test_positive <span class="op">=</span> np.where(has_disease, rng.random(n) <span class="op">&lt;</span> <span class="fl">0.90</span>, rng.random(n) <span class="op">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>simulated_ppv <span class="op">=</span> has_disease[test_positive].mean()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>simulated_miss <span class="op">=</span> has_disease[<span class="op">~</span>test_positive].mean()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>formula_ppv, formula_npv <span class="op">=</span> predictive_values(<span class="fl">0.20</span>, <span class="fl">0.90</span>, <span class="fl">0.95</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"PPV:     simulated </span><span class="sc">{</span>simulated_ppv<span class="sc">:.3f}</span><span class="ss">   formula </span><span class="sc">{</span>formula_ppv<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"1 - NPV: simulated </span><span class="sc">{</span>simulated_miss<span class="sc">:.4f}</span><span class="ss">  formula </span><span class="sc">{</span><span class="dv">1</span> <span class="op">-</span> formula_npv<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>PPV:     simulated 0.818   formula 0.818
+1 - NPV: simulated 0.0260  formula 0.0256</code></pre>
+</div>
+</div>
+<p>Counting simulated patients gives the same answer as Bayes’ theorem, to within simulation noise. When a formula feels slippery, simulating it is often the quickest way to build trust, or to find a mistake.</p>
+</section>
+<section id="the-tests-numbers-are-estimates-too" class="level2">
+<h2 class="anchored" data-anchor-id="the-tests-numbers-are-estimates-too">7. The test’s numbers are estimates too</h2>
+<p>“90% sensitivity” usually comes from a validation study, often a modest one. Suppose it found:</p>
+<ul>
+<li>45 of 50 patients with the disease tested positive (90% sensitivity);</li>
+<li>190 of 200 patients without it tested negative (95% specificity).</li>
+</ul>
+<p>Those are estimates from 250 people, not fixed facts. A natural way to express the uncertainty is a <strong>beta distribution</strong> for each: with a flat starting point, sensitivity is Beta(45 + 1, 5 + 1) and specificity Beta(190 + 1, 10 + 1). (This is the standard Bayesian updating rule for proportions: add the successes to α and the failures to β. Future posts will build on it.) Then simulate: draw a plausible sensitivity and specificity, compute the PPV, and repeat.</p>
+<div id="60962ee7" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>draws <span class="op">=</span> <span class="dv">100_000</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sens_draws <span class="op">=</span> rng.beta(<span class="dv">45</span> <span class="op">+</span> <span class="dv">1</span>, <span class="dv">5</span> <span class="op">+</span> <span class="dv">1</span>, draws)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>spec_draws <span class="op">=</span> rng.beta(<span class="dv">190</span> <span class="op">+</span> <span class="dv">1</span>, <span class="dv">10</span> <span class="op">+</span> <span class="dv">1</span>, draws)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">3.8</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, pretest <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="fl">0.02</span>, <span class="fl">0.20</span>]):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    ppv_draws, _ <span class="op">=</span> predictive_values(pretest, sens_draws, spec_draws)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    lo, mid, hi <span class="op">=</span> np.percentile(ppv_draws, [<span class="fl">2.5</span>, <span class="dv">50</span>, <span class="fl">97.5</span>])</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    ax.hist(ppv_draws, bins<span class="op">=</span><span class="dv">80</span>, color<span class="op">=</span><span class="st">"#5d6d7e"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    ax.axvline(lo, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">":"</span>)<span class="op">;</span> ax.axvline(hi, color<span class="op">=</span><span class="st">"black"</span>, ls<span class="op">=</span><span class="st">":"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"Pre-test </span><span class="sc">{</span>pretest<span class="sc">:.0%}</span><span class="ss">: PPV </span><span class="sc">{</span>mid<span class="sc">:.0%}</span><span class="ss"> (95% range </span><span class="sc">{</span>lo<span class="sc">:.0%}</span><span class="ss"> to </span><span class="sc">{</span>hi<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"PPV"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks([])</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With a 2% pre-test probability, the PPV could plausibly be anywhere from about 17% to 40%. Most of that range comes from the specificity: when almost everyone tested is healthy, small changes in the false-positive rate swing the answer. With a 20% pre-test probability the range (about 71% to 89%) is narrower in relative terms.</p>
+<p>Two practical lessons:</p>
+<ul>
+<li><strong>Check where a test’s numbers come from.</strong> Ask how many patients they’re based on and who those patients were. A test validated in a hospital population (sicker, more obvious cases) often looks better than it performs in primary care. This is known as <em>spectrum bias</em>.</li>
+<li><strong>Small validation studies mean wide uncertainty, especially in screening.</strong> Quoting a single PPV to one decimal place can imply far more precision than exists.</li>
+</ul>
+</section>
+<section id="phrases-to-retire-and-what-to-say-instead" class="level2">
+<h2 class="anchored" data-anchor-id="phrases-to-retire-and-what-to-say-instead">8. Phrases to retire, and what to say instead</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You might hear</th>
+<th>What’s wrong</th>
+<th>Better</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“The test was negative and it’s 90% sensitive, so there’s a 10% chance it’s a false negative.”</td>
+<td>The chance that a <em>negative result</em> is wrong (1 − NPV) depends on the pre-test probability. It can be far below or far above 10%.</td>
+<td>“Given how likely this was beforehand, the chance of disease after a negative test is about X%.”</td>
+</tr>
+<tr class="even">
+<td>“It’s 95% specific, so a positive means 95% likely.”</td>
+<td>That’s the PPV, and at low prevalence it can be much lower.</td>
+<td>“In this population, roughly X of every 100 positives are true.”</td>
+</tr>
+<tr class="odd">
+<td>“The test is 95% accurate.”</td>
+<td>Accuracy mixes both groups and depends heavily on prevalence. At 2% prevalence, a “test” that calls everyone negative is 98% accurate.</td>
+<td>Report sensitivity and specificity, or the predictive values for the population in question.</td>
+</tr>
+<tr class="even">
+<td>“SnNout / SpPin: a negative highly sensitive test rules it out.”</td>
+<td>Useful, but only when sensitivity is <em>very</em> high and the pre-test probability isn’t. Section 3 shows a 90% sensitive test failing to rule out at high suspicion.</td>
+<td>Use the likelihood ratio and the pre-test probability.</td>
+</tr>
+<tr class="odd">
+<td>“Let’s repeat it to be sure.”</td>
+<td>Repeating the same test often repeats the same error. Results aren’t independent.</td>
+<td>Confirm with a <em>different</em> test that fails in different ways.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
+<ul>
+<li>Sensitivity and specificity describe the <strong>test</strong>; PPV and NPV describe <strong>your patient’s result</strong>. Converting from one to the other needs the pre-test probability.</li>
+<li>The same test can produce a PPV of 15% or 96% depending on who you test.</li>
+<li>Likewise, the chance that a negative result is wrong can be 0.1% in screening or about 14% under high suspicion. That’s the number the “10% chance we missed it” sentence is really reaching for.</li>
+<li>Thinking in counts (“out of 1,000 patients like this one…”) turns a confusing probability problem into arithmetic.</li>
+<li>Likelihood ratios aka the Bayes Factor give a bedside shortcut: multiply the pre-test odds.</li>
+<li>The test’s own numbers are estimates, and their uncertainty can matter a lot, most of all in screening.</li>
+</ul>
+<p>The deeper idea is Bayesian: start with what you believed before the test, and update it by how much more likely the result is in disease than in health. Future posts build the same habit with other examples, from baseball batting averages to trading-card pull rates.</p>
+</section>
+<section id="references-and-further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="references-and-further-reading">References and further reading</h2>
+<ul>
+<li>Gigerenzer G, Gaissmaier W, Kurz-Milcke E, Schwartz LM, Woloshin S. Helping doctors and patients make sense of health statistics. <em>Psychological Science in the Public Interest</em>. 2007;8(2):53–96.</li>
+<li>Gigerenzer G. What are natural frequencies? <em>BMJ</em>. 2011;343:d6386.</li>
+<li>Altman DG, Bland JM. Diagnostic tests 1: sensitivity and specificity. <em>BMJ</em>. 1994;308:1552.</li>
+<li>Altman DG, Bland JM. Diagnostic tests 2: predictive values. <em>BMJ</em>. 1994;309:102.</li>
+<li>Deeks JJ, Altman DG. Diagnostic tests 4: likelihood ratios. <em>BMJ</em>. 2004;329:168–169.</li>
+<li>Fagan TJ. Nomogram for Bayes’s theorem. <em>New England Journal of Medicine</em>. 1975;293:257.</li>
+<li>Whiting PF et al.&nbsp;Sources of variation and bias in studies of diagnostic accuracy: a systematic review. <em>Annals of Internal Medicine</em>. 2004;140(3):189–202 (spectrum bias and related problems).</li>
+</ul>
+<p><em>The test figures in this post (90% sensitivity, 95% specificity, and the validation counts) are illustrative, not taken from any particular test.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/jliu771\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
