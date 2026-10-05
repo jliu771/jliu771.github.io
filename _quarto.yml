@@ -6,8 +6,18 @@ website:
   description: "Bayesian thinking for clinicians, cards and code"
   site-url: https://jliu771.github.io
   navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: posts.qmd
+        text: Posts
+      - href: resources.qmd
+        text: Resources
+      - href: about.qmd
+        text: About
+      - href: contact.qmd
+        text: Contact
     right:
-      - about.qmd
       - icon: github
         href: https://github.com/jliu771
       - icon: rss

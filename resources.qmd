@@ -1,0 +1,36 @@
+---
+title: "Resources"
+subtitle: "Books, courses and tools behind the posts, roughly in the order I'd suggest them"
+---
+
+## Start here
+
+- **David Spiegelhalter, *The Art of Statistics* (2019).** The best plain-language introduction to thinking with data that I know of. No code, no prerequisites.
+- **Gerd Gigerenzer, *Calculated Risks* (2002; *Reckoning with Risk* in the UK).** Why doctors, patients and courts misread probabilities, and how natural frequencies fix it. The inspiration for the first post here.
+- **Gigerenzer et al., ["Helping doctors and patients make sense of health statistics"](https://journals.sagepub.com/doi/10.1111/j.1539-6053.2008.00033.x)** (*Psychological Science in the Public Interest*, 2007). A long, readable review aimed squarely at clinicians.
+
+## For clinicians
+
+- **The BMJ *Statistics Notes* series (Altman, Bland and colleagues).** Short, one-page explanations of single ideas. The diagnostic-test notes (sensitivity and specificity, predictive values, likelihood ratios) pair well with the first post.
+
+## Bayesian statistics
+
+- **Richard McElreath, *Statistical Rethinking* (2nd ed., 2020).** The friendliest serious introduction to Bayesian modelling, with free lecture videos and materials on [GitHub](https://github.com/rmcelreath/stat_rethinking_2026). Python versions of the book's code: [PyMC resources](https://github.com/pymc-devs/pymc-resources).
+- **David Robinson, *Introduction to Empirical Bayes: Examples from Baseball Statistics* (2017).** Short, practical and built on batting averages. It grew out of his [Variance Explained](http://varianceexplained.org/) blog series; the book's source is on [GitHub](https://github.com/dgrtwo/empirical-bayes-book).
+- **Gelman, Hill and Vehtari, *Regression and Other Stories* (2020).** Regression as modelling rather than recipe. The authors offer a [free PDF](https://users.aalto.fi/~ave/ROS.pdf).
+- **Gelman et al., *Bayesian Data Analysis* (3rd ed., 2013).** The standard reference, and a free PDF is available from the [book's home page](http://www.stat.columbia.edu/~gelman/book/). Home of the rat tumour example.
+- **Martin, Kumar and Lao, *Bayesian Modeling and Computation in Python* (2021).** Hands-on PyMC and ArviZ.
+
+## Learn by doing
+
+- **[Empirical Bayes in Python](https://github.com/jliu771/BayesStatsCardsandComputers):** my own workbook notebooks following Robinson's book chapter by chapter, with prompts to fill in yourself.
+
+## Tools
+
+- [Python](https://www.python.org/) with NumPy, SciPy, pandas and matplotlib for everything on this blog.
+- [PyMC](https://www.pymc.io/) and [ArviZ](https://python.arviz.org/) for full Bayesian models.
+- [Quarto](https://quarto.org/), which turns the Jupyter notebooks into this site.
+
+## Data
+
+- [Lahman Baseball Database](https://sabr.org/lahman-database/) (CC BY-SA 3.0), used in the empirical Bayes posts.

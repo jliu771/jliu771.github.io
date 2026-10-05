@@ -1,0 +1,9 @@
+---
+title: "Contact"
+---
+
+I'd love to hear from you, especially if you've spotted a mistake, have a better way to explain something, or have a topic you'd like to see covered.
+
+- **Found an error or have a suggestion for a post?** Open an issue on the [blog's GitHub repository](https://github.com/jliu771/jliu771.github.io/issues). Corrections are always welcome, and I'll credit you in the post.
+- **Code and notebooks:** everything behind the posts is on [GitHub](https://github.com/jliu771).
+- **Follow along:** subscribe to new posts with the [RSS feed](index.xml).
