@@ -16,8 +16,8 @@ website:
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      - superhero        # colours
+      - lux-type.scss    # Lux's typography on top
     css: styles.css
     toc: true
     code-fold: true

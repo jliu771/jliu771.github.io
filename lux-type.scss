@@ -1,0 +1,48 @@
+/*-- scss:defaults --*/
+// Site background: the same navy the chart panels show (a lighter shade than
+// superhero's own #0f2537). Superhero derives its other dark shades from this.
+$body-bg: #1e3a56;
+
+// Lux's typography layered on another theme (currently superhero).
+// Settings here win over the base theme's, because this file is listed after it in _quarto.yml.
+
+// Load Nunito Sans instead of the base theme's font
+$web-font-path: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap";
+
+$font-family-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$headings-font-weight: 600;
+
+// Lux's heading sizes (smaller than most themes, which suits the uppercase style)
+$h1-font-size: 2rem;
+$h2-font-size: 1.75rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1.25rem;
+
+/*-- scss:rules --*/
+
+// Lux's signature look: airy body text, uppercase spaced-out headings and navbar
+body {
+  letter-spacing: .5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.navbar {
+  font-size: .875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// Long post titles are hard to read in capitals, so keep them in normal case
+// on the home page list and at the top of each post. Delete this block if you
+// want them uppercase too.
+.quarto-listing .listing-title,
+.quarto-title .title,
+.quarto-title-block .title {
+  text-transform: none;
+  letter-spacing: normal;
+}
